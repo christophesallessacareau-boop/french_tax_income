@@ -40,4 +40,10 @@ Supérieure à 181 917 €: 45 %
 Le code ne tient pas compte des crédits d'impôts et niches fiscales qui sont spécifiques individuellement.  
 Le code ne tient pas compte des revenus externes(loyers,revenus mobiliers,...)  
 
-sur le plan technique, Python 3.12 a été utilisé            
+sur le plan technique, Python 3.12 a été utilisé  
+
+lancement de Gradio pour utiliser le calculateur en local à l'aide d'un terminal (à défaut d'utiliser Hugging face Spaces):
+python app.py  
+  
+lancement du calculateur avec Hugging face Spaces:  
+https://huggingface.co/spaces/ChristopheSalles31/french_tax_income           

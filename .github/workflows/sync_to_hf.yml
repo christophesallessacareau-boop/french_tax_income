@@ -1,0 +1,22 @@
+name: Sync to Hugging Face Space
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_FRENCH_TAX_INCOME }}
+        run: |
+          git remote add hf https://user:$HF_FRENCH_TAX_INCOME@huggingface.co/spaces/ChristopheSalles31/french_tax_income
+          git push hf main --force
