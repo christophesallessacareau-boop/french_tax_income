@@ -1,4 +1,3 @@
-# tax_calculator.py
 # UI: Gradio interface
 
 import gradio as gr
