@@ -1,16 +1,3 @@
----  
-title: French Tax Income
-emoji: 👀
-colorFrom: gray
-colorTo: pink
-sdk: gradio
-sdk_version: 6.20.0
-python_version: '3.12'
-app_file: app.py
-pinned: false
-short_description: "Calcul de l'impôt sur le revenu d'un contribuable en France"  
----  
-
 *** Calcul de l'impôt sur le revenu d'un contribuable en France**  
 
 l'interface utilisateur est réalisée avec Gradio et accessible avec Hugging Face Spaces 
