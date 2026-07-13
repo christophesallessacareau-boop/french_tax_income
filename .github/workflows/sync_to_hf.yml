@@ -16,7 +16,7 @@ jobs:
 
       - name: Push to Hugging Face Space
         env:
-          HF_TOKEN: ${{ secrets.HF_FRENCH_TAX_INCOME }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git remote add hf https://user:$HF_FRENCH_TAX_INCOME@huggingface.co/spaces/ChristopheSalles31/french_tax_income
+          git remote add hf https://user:$HF_TOKEN@huggingface.co/spaces/ChristopheSalles31/french_tax_income
           git push hf main --force
