@@ -1,9 +1,10 @@
 *** Calcul de l'impôt sur le revenu d'un contribuable en France**  
 
-l'interface utilisateur est réalisé avec Gradio  
-  
+l'interface utilisateur est réalisée avec Gradio et accessible avec Hugging Face Spaces 
+
+
 Les règles de déclaration fiscale sont celles de l'année 2026 (revenu perçu en 2025)  
-Le code peut être adaptée aux années ultérieures  
+Le code peut être adapté aux années ultérieures  
   
 Le code tient compte des éléments suivants:  
 le simulateur est simplifié par rapport à l'officiel mais il en est très proche  
