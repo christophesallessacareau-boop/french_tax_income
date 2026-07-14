@@ -1,9 +1,19 @@
 # UI: Gradio interface
 
 import gradio as gr
+import spaces
+
+# Dummy GPU placeholder function to satisfy ZeroGPU startup check on free-tier Spaces
+# using Gradio in new Hugging Face Spaces created
+@spaces.GPU
+def _dummy_gpu_placeholder():
+    """Unused function required so ZeroGPU startup check passes on this free-tier Space."""
+    return None
+
 
 # 2026 tax brackets (income 2025) for the French income tax:
 # maximum income for each bracket and the corresponding tax rate.
+# low income related to low tax rates, high income related to high tax rates.
 TAX_BRACKETS=[(181917,0.45),(84577,0.41),(29579,0.30),(11600,0.11)]
 
 # The maximum tax saving per half part is 1807€ in 2026 (income 2025)
@@ -21,7 +31,8 @@ def taxable_income(gross,deduction_type,actual=0):
     return max(0,gross-deduction),deduction
 
 def compute_tax(income,parts):
-    ""
+    """Computes the tax based on the taxable income and the number of fiscal parts
+    using the French tax brackets."""
     x=income/parts
     t=0
     for lim,rate in TAX_BRACKETS:
@@ -31,7 +42,8 @@ def compute_tax(income,parts):
     return t*parts
 
 def apply_quotient_familial_cap(income,parts,status):
-    """Applies the quotient familial cap to the computed tax based on income, fiscal parts, and marital status."""
+    """Applies the quotient familial cap to the computed tax based on income,
+    fiscal parts, and marital status."""
     tax_actual=compute_tax(income,parts)
     base=1 if status=="Single" else 2
     if parts<=base:return tax_actual
@@ -43,7 +55,8 @@ def apply_quotient_familial_cap(income,parts,status):
     return tax_actual
 
 def compute_cehr(income,status):
-    """Computes the Contribution Exceptionnelle sur les Hauts Revenus (CEHR) based on highest income and marital status."""
+    """Computes the Contribution Exceptionnelle sur les Hauts Revenus (CEHR)
+    based on highest income and marital status."""
     c=0
     if status=="Single":
         if income>250000:c+=(min(income,500000)-250000)*0.03
@@ -54,7 +67,8 @@ def compute_cehr(income,status):
     return c
 
 def compute_decote(tax,income,status):
-    """Computes the décote (tax reduction) based on the tax amount, income, and marital status."""
+    """Computes the décote (tax reduction) based on the tax amount,
+    income, and marital status."""
     if income>84577:return 0
     if status=="Single" and tax<=1982:
         return max(0,897-tax*0.4525)
@@ -63,7 +77,8 @@ def compute_decote(tax,income,status):
     return 0
 
 def compute_fiscal_parts(status,children,dis1,dis2,dis_child):
-    """Computes the number of fiscal parts based on marital status, number of children, and disabilities."""
+    """Computes the number of fiscal parts based on marital status,
+    number of children, and disabilities."""
     base=1 if status=="Single" else 2
     cp=0
     if children==1: cp=.5
