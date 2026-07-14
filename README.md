@@ -1,11 +1,11 @@
----  
+---
 title: French_tax_income  
 sdk: gradio  
 colorFrom: purple  
 colorTo: pink  
 pinned: false  
 short_description: simulateur d'impôt sur le revenu en France  
----  
+---
   
 *** Calcul de l'impôt sur le revenu d'un contribuable en France**  
 
